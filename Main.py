@@ -56,7 +56,7 @@ def cadastrar_funcionario():
     if contrato_op == 1:  # PJ não tem descontos
         salario = salario 
     
-    elif contrato_op == 2:  # CLT tem um adicional de 20% sobre o salário base
+    elif contrato_op == 2:
         if salario < 1412:
             salario = 1412  - (salario * 7.5 / 100)  # Salário mínimo CLT com desconto de INSS
             
