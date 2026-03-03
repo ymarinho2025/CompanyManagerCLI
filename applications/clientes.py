@@ -18,15 +18,15 @@ def cadastrar_cliente():
             print("Opção inválida. Digite 's' para sim ou 'n' para não.")
 
             
-            cliente = {
-                "nome": nome,
-                "idade": idade,
-                "genero": genero_map[genero_op],
-                "vip": cliente_vip == "s"}
-            clientes.append(cliente)
-            database.salvar_cliente(cliente)
-            
-            print("Cliente cadastrado com sucesso!\n")
+        cliente = {
+            "nome": nome,
+            "idade": idade,
+            "genero": genero_map[genero_op],
+            "vip": cliente_vip == "s"}
+        clientes.append(cliente)
+        database.salvar_cliente(cliente)
+        
+        print("Cliente cadastrado com sucesso!\n")
             
 def listar_clientes():
     print("\nClientes cadastrados:")
