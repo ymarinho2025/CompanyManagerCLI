@@ -11,11 +11,16 @@ def enviar_tarefa():
         print("Nenhum funcionário cadastrado para enviar tarefas.\n")
         return
     listar_funcionarios()
-    nome_funcionario = input("Digite o nome do funcionário para enviar a tarefa: ")
-    nomes = [f["nome"] for f in funcionarios]
-    if nome_funcionario not in nomes:
-        print("Funcionário não encontrado. Tente novamente.\n")
+    numero_funcionario = input_int("Digite o número do funcionário para enviar a tarefa (0 para cancelar): ")
+
+    if numero_funcionario == 0:
+        print("Cancelado.\n")
         return
+
+    if 1 <= numero_funcionario <= len(funcionarios):
+        funcionario_escolhido = funcionarios[numero_funcionario - 1]
+        nome_funcionario = funcionario_escolhido["nome"]
+        
     task = input("Digite a tarefa a ser realizada: ")
     tarefa = {"funcionario": nome_funcionario, "descricao": task}
     tarefas.append(tarefa)
