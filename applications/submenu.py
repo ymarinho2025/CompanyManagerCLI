@@ -1,5 +1,4 @@
 from typing import List, Dict
-
 from input import input_int
 
 def menu_sub(titulo: str, opcoes: List[str]) -> int:

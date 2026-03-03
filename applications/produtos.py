@@ -1,5 +1,6 @@
-from typing import List, Dict
+import database
 
+from typing import List, Dict
 from input import input_int, input_float
 
 produtos: List[Dict] = []
@@ -14,13 +15,16 @@ def cadastrar_produto():
         print("Desconto não pode ser maior que 100%. Ajustando para 100%.")
         desconto = 100.0
     valorComDesconto = valor - (valor * (desconto / 100))
-    produtos.append({
+    produto = {
         "nome": nome,
         "descricao": descricao,
         "preco_original": valor,
         "desconto_pct": desconto,
         "preco_final": round(valorComDesconto, 2)
-    })
+        }
+    produtos.append(produto)
+    database.salvar_produto(produto)
+    
     print("Produto cadastrado com sucesso!\n")
     
 def listar_produtos():
@@ -40,6 +44,9 @@ def excluir_produtos():
         return
     if 1 <= int(numero_produto) <= len(produtos):
         removido = produtos.pop(int(numero_produto) - 1)
+        
+        database.excluir_produto_por_nome(removido["nome"])
+        
         print(f"Produto '{removido['nome']}' excluído com sucesso!\n")
     else:
         print("Índice inválido.\n")

@@ -1,5 +1,6 @@
-from typing import List, Dict
+import database
 
+from typing import List, Dict
 from funcionarios import funcionarios, listar_funcionarios
 from input import input_int
 
@@ -16,10 +17,10 @@ def enviar_tarefa():
         print("Funcionário não encontrado. Tente novamente.\n")
         return
     task = input("Digite a tarefa a ser realizada: ")
-    tarefas.append({
-        "funcionario": nome_funcionario,
-        "descricao": task
-        })
+    tarefa = {"funcionario": nome_funcionario, "descricao": task}
+    tarefas.append(tarefa)
+    database.salvar_tarefa(tarefa)
+    
     for i, t in enumerate(tarefas, 1):
         print(f"Tarefa {i}: Funcionário: {t['funcionario']}, Tarefa: {t['descricao']}")
         print()
@@ -41,6 +42,9 @@ def remover_tarefas():
         return
     if 1 <= numero_tarefa <= len(tarefas):
         rem = tarefas.pop(numero_tarefa - 1)
+        
+        database.remover_tarefa_por_index(numero_tarefa)
+        
         print(f"Tarefa de {rem['funcionario']} removida com sucesso!\n")
     else:
         print("Índice inválido.\n")

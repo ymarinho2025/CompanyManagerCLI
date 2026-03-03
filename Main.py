@@ -1,4 +1,6 @@
 from typing import List, Dict
+import applications.database as database
+
 import applications.funcionarios as func
 from applications.funcionarios import funcionarios, cadastrar_funcionario, listar_funcionarios
 from applications.clientes import clientes, cadastrar_cliente, listar_clientes
@@ -7,6 +9,20 @@ from applications.tarefas import tarefas, enviar_tarefa, listar_tarefas, remover
 from applications.input import input_int
 from applications.submenu import menu_sub
             
+def carregar_dados_do_db():
+    # clientes, funcionarios, produtos, tarefas já importados acima (referência às listas dos módulos)
+    clientes.clear()
+    clientes.extend(database.carregar_clientes())
+
+    funcionarios.clear()
+    funcionarios.extend(database.carregar_funcionarios())
+
+    produtos.clear()
+    produtos.extend(database.carregar_produtos())
+
+    tarefas.clear()
+    tarefas.extend(database.carregar_tarefas())
+    
 def menu_principal() -> int:
     print("Sistema Marinho's Company (ADMIN)\n")
     print("Selecione uma opção:")
@@ -21,6 +37,8 @@ def menu_principal() -> int:
         return 0
         
 def main():
+    database.init_db()
+    carregar_dados_do_db()
     while True:
         main_choice = menu_principal()
         print()

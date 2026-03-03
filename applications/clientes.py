@@ -1,5 +1,6 @@
-from typing import List, Dict
+import database
 
+from typing import List, Dict
 from input import input_int
 
 clientes: List[Dict] = []
@@ -17,13 +18,15 @@ def cadastrar_cliente():
             print("Opção inválida. Digite 's' para sim ou 'n' para não.")
 
             
-    clientes.append({
-        "nome": nome,
-        "idade": idade,
-        "genero": genero_map[genero_op],
-        "vip": cliente_vip == "s"
-        })
-    print("Cliente cadastrado com sucesso!\n")
+            cliente = {
+                "nome": nome,
+                "idade": idade,
+                "genero": genero_map[genero_op],
+                "vip": cliente_vip == "s"}
+            clientes.append(cliente)
+            database.salvar_cliente(cliente)
+            
+            print("Cliente cadastrado com sucesso!\n")
             
 def listar_clientes():
     print("\nClientes cadastrados:")

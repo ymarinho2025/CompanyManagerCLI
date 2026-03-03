@@ -1,5 +1,6 @@
-from typing import List, Dict
+import database
 
+from typing import List, Dict
 from input import input_int, input_float
 
 funcionarios: List[Dict] = []
@@ -36,14 +37,16 @@ def cadastrar_funcionario():
         print("Opção de contrato inválida. Cadastrando como CLT por padrão.")
         contrato_op = 2
     
-    funcionarios.append({
+    funcionario = {
         "nome": nome,
         "cargo": cargo,
         "contrato": contrato_map[contrato_op],
         "valor_hora": valorPorHora,
         "horas_semanais": horasSemanais,
         "salario_mensal": salario
-    })
+        }
+    funcionarios.append(funcionario)
+    database.salvar_funcionario(funcionario)
     
     print(f"Salário mensal calculado: R${salario:.2f}\n")
     print("Funcionário cadastrado com sucesso!\n")
