@@ -1,7 +1,6 @@
 from typing import List, Dict
 import applications.database as database
 
-import applications.funcionarios as func
 from applications.funcionarios import funcionarios, cadastrar_funcionario, listar_funcionarios
 from applications.clientes import clientes, cadastrar_cliente, listar_clientes
 from applications.produtos import produtos, cadastrar_produto, listar_produtos, excluir_produtos

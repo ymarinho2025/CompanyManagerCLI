@@ -1,7 +1,7 @@
-import database
+import applications.database as database
 
 from typing import List, Dict
-from input import input_int
+from applications.input import input_int
 
 clientes: List[Dict] = []
 

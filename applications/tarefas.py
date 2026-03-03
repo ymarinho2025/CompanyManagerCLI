@@ -1,8 +1,8 @@
-import database
+import applications.database as database
 
 from typing import List, Dict
-from funcionarios import funcionarios, listar_funcionarios
-from input import input_int
+from applications.funcionarios import funcionarios, listar_funcionarios
+from applications.input import input_int
 
 tarefas: List[Dict] = []
 
